@@ -1,0 +1,17 @@
+@(elements: helper.FieldElements)
+
+<div class="field-wrapper @if(elements.hasErrors) {error}">
+    <label for="@elements.id">@elements.label</label>
+    <div class="input">
+        @elements.input
+        @if(elements.hasErrors) {
+        <div class="errors">
+        	@for(e <- elements.errors) {
+    			<span class="error">
+  					@e
+    			</span>
+        	}
+      	</div>
+      	}
+    </div>
+</div>

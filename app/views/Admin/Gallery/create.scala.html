@@ -1,0 +1,27 @@
+@(id: Option[String], form: Form[models.gallery.Album])(implicit messages: Messages)
+
+@import forms.Helper._
+
+@Admin.base("CREATE ALBUM") {
+	<div class="title row">
+		<span class="heading left">
+			Create album 
+		</span>
+		<a href="@admin.routes.Gallery.list()" class="simple-btn mr20 right">
+			Albums list
+		</a>
+	</div>
+	<div class="main-content gallery">
+		<div class="create album">
+			@helper.form(action = admin.routes.Gallery.create(), 'class -> "form-wrapper") {
+				@helper.inputText(form("title"))
+				@helper.textarea(form("description"))
+
+				<div class="form-actions">
+		      <input class="simple-btn save-btn" type="submit" />
+		    </div>
+		    <div class="clear"></div>
+			}
+		</div>
+	</div>
+}

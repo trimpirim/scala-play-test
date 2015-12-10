@@ -1,0 +1,16 @@
+@(albums: List[models.gallery.Album])
+
+@base("THIS IS GALLERY") {
+	<div class="title">
+		THIS IS TITLE 
+	</div>
+	<div class="main-content gallery">
+		<ul class="albums">
+			@for(album <- albums) {
+			<li>
+				@album.title
+			</li>
+			}
+		</ul>
+	</div>
+}

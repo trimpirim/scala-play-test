@@ -1,0 +1,28 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+# GET     /                           controllers.Application.index
+
+GET	/	controllers.Statics.index
+GET /about controllers.Statics.about
+GET /contacts controllers.Statics.contacts
+GET /gallery controllers.gallery.Gallery.index
+
+# album
+GET /admin/gallery/list controllers.admin.Gallery.list
+GET /admin/gallery/create controllers.admin.Gallery.createForm
+POST /admin/gallery/create controllers.admin.Gallery.create
+GET /admin/gallery/edit/:id controllers.admin.Gallery.editForm(id)
+POST /admin/gallery/edit/:id controllers.admin.Gallery.edit(id)
+
+# photo
+GET /admin/album/:album/photo/create controllers.admin.Photo.makeCreate(album)
+POST /admin/album/:album/photo/create controllers.admin.Photo.create(album)
+GET /admin/album/:album/photo/edit/:photo controllers.admin.Photo.makeEdit(album, photo)
+GET /preview/:photo controllers.admin.Photo.preview(photo)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+GET     /webjars/*file                    controllers.WebJarAssets.at(file)

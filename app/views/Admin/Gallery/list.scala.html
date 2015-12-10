@@ -1,0 +1,44 @@
+@(albums: List[models.gallery.Album])
+
+@Admin.base("ADMIN ALBUMS LIST") {
+	<div class="title row">
+		<span class="heading left">
+			THIS IS TITLE 
+		</span>
+		<a href="@admin.routes.Gallery.createForm()" class="simple-btn mr20 right">
+			Create a new one
+		</a>
+	</div>
+	<div class="main-content gallery">
+		<ul class="albums list">
+			@for(album <- albums) {
+			<li>
+				<a href="@admin.routes.Gallery.edit(album.id.get)">
+					<ul class="album detailed">
+						<li class="title">
+							@album.title
+						</li>
+						<li class="description">
+							@album.description
+						</li>
+						<li class="date">
+							@if(album.added.isDefined) { 
+								@album.added.get.format("YYYY-MM-dd")
+							} else {
+								-
+							}
+						</li>
+						<li class="date">
+							@if(album.updated.isDefined) {
+								@album.updated.get.format("YYYY-MM-dd")
+							} else {
+								-
+							}
+						</li>
+					</ul>
+				</a>
+			</li>
+			}
+		</ul>
+	</div>
+}

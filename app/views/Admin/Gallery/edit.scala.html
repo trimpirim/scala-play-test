@@ -1,0 +1,58 @@
+@(id: Option[String], form: Form[models.gallery.Album], photos: Option[List[models.gallery.Photo]])(implicit messages: Messages)
+
+@import forms.Helper._
+
+@Admin.base("EDIT ALBUM") {
+	<div class="title row">
+		<span class="heading left">
+			Edit album 
+		</span>
+		<a href="@admin.routes.Gallery.list()" class="simple-btn mr20 right">
+			Albums list
+		</a>
+	</div>
+	<div class="main-content gallery">
+		<div class="edit album">
+			@helper.form(action = admin.routes.Gallery.edit(id.get), 'class -> "form-wrapper") {
+				@helper.inputText(form("title"))
+				@helper.textarea(form("description"))
+
+				<div class="form-actions">
+		      <input class="simple-btn save-btn" type="submit" />
+		    </div>
+		    <div class="clear"></div>
+			}
+		</div>
+	</div>
+	<div class="right-side-wrapper">
+		<div class="right-side-content">
+			<ul>
+				<li class="heading row">
+					<span class="left">
+						HEADING
+					</span>
+					<a href="@admin.routes.Photo.makeCreate(id.get)" class="right">
+						<span>
+							+ photo
+						</span>
+					</a>
+					<div class="clear"></div>
+				</li>
+				@for(photo <- photos.get) {
+				<li class="row">
+					<a href="@admin.routes.Photo.makeEdit(id.get, photo.id.get)" class="left">
+						<span>
+							@photo.title
+						</span>
+					</a>
+					<a href="javscript:void(0);">
+						<span class="right">
+							x
+						</span>
+					</a>
+				</li>
+				}
+			</ul>
+		</div>
+	</div>
+}

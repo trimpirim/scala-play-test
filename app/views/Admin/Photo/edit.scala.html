@@ -1,0 +1,40 @@
+@(id: Option[String], album: String, form: Form[models.gallery.Photo], photo: models.gallery.Photo)(implicit messages: Messages)
+
+@import forms.Helper._
+
+@Admin.base("CREATE PHOTO") {
+	<div class="title row">
+		<span class="heading left">
+			Edit photo 
+		</span>
+		<a href="@admin.routes.Gallery.edit(album)" class="simple-btn mr20 right">
+			Album list
+		</a>
+	</div>
+	<div class="main-content gallery">
+		<div class="create photo">
+			@helper.form(action = admin.routes.Photo.create(album), 'class -> "form-wrapper", 'enctype -> "multipart/form-data") {
+				@helper.inputText(form("title"))
+				@helper.textarea(form("description"))
+
+				<div class="photo">
+					<div class="filename">
+						<img src="@admin.routes.Photo.preview(id.get)" />
+					</div>
+				</div>
+
+				<div class="field-wrapper">
+				    <label for="chosenFile">Choose file</label>
+				    <div class="input">
+								<input type="file" name="photo" id="photo" />
+				    </div>
+				</div>
+
+				<div class="form-actions">
+		      <input class="simple-btn save-btn" type="submit" />
+		    </div>
+		    <div class="clear"></div>
+			}
+		</div>
+	</div>
+}
